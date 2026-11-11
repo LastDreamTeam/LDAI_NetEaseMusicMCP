@@ -1,0 +1,21 @@
+{
+  "product": "netease-music",
+  "tool": "netease_user_library",
+  "description": "读取这个网易云音乐账号收藏的歌单。",
+  "keys": [
+    "NCM_NODE",
+    "NCM_CLI_JS"
+  ],
+  "required": [
+    "NCM_NODE",
+    "NCM_CLI_JS"
+  ],
+  "private_paths": [],
+  "url_keys": [],
+  "entry": "server.py",
+  "args": {
+    "action": "collected_playlists",
+    "limit": 10
+  },
+  "bound_args": {}
+}
