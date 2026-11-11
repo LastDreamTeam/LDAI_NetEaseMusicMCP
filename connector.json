@@ -1,6 +1,6 @@
 {
   "id": "netease-music",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "repository": "https://github.com/LastDreamTeam/LDAI_NetEaseMusicMCP",
   "runtime": "python",
   "toolPrefixes": [

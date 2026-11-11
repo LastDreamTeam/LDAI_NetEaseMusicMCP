@@ -136,8 +136,7 @@ def music_podcast(podcast_id:Annotated[str,Field(pattern=r"^\d{1,24}$")],episode
 @mcp.tool()
 def music_collected_podcasts(limit:Page=20,cursor:str=""):
     """Read radio channels subscribed to by the selected user."""
-    args=["podcast","collected","--limit",str(limit)]
-    if cursor:args+=["--cursor",cursor]
+    args=["podcast","collected","--limit",str(limit),"--cursor",cursor or "0"]
     return command(args,"读取收藏电台")
 
 if __name__ == "__main__":

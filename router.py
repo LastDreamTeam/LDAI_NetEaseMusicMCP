@@ -221,6 +221,16 @@ def open_manager():
                                     stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
     return {"opened":True,"message":"已在插件执行器打开账号管理窗口。修改后刷新客户端的工具列表。"}
 
+def account_arguments(name, arguments):
+    """Adapt optional pagination to the selected official CLI action."""
+    args=dict(arguments)
+    if name=="netease_podcast_read" and args.get("action")=="collected" and not args.get("cursor"):
+        args["cursor"]="0"
+    if name=="netease_user_library" and args.get("action") in ("profile","favorite_playlist"):
+        args.pop("limit",None)
+        args.pop("offset",None)
+    return args
+
 async def handle(r):
     method=r.get("method")
     if method=="initialize":
@@ -252,7 +262,7 @@ async def handle(r):
             return payload("Unknown tool or account. Refresh the tool list.",True)
         w,name=route
         try:
-            return await w.request("tools/call",{**p,"name":name})
+            return await w.request("tools/call",{**p,"name":name,"arguments":account_arguments(name,p.get("arguments",{}))})
         except Exception:
             return payload("Account worker failed. Verify the operation on the provider before retrying.",True)
     raise LookupError
