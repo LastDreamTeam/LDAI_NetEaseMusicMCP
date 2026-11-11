@@ -1,6 +1,6 @@
 {
   "id": "netease-music",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": "https://github.com/LastDreamTeam/LDAI_NetEaseMusicMCP",
   "runtime": "python",
   "toolPrefixes": [
@@ -14,9 +14,16 @@
     "LOCALAPPDATA",
     "XDG_CONFIG_HOME",
     "XDG_DATA_HOME",
-    "XDG_CACHE_HOME"
+    "XDG_CACHE_HOME",
+    "NCM_NODE",
+    "NCM_CLI_JS"
   ],
   "requiredMulti": [
     "HOME"
-  ]
+  ],
+  "title": "网易云音乐",
+  "managerFields": {
+    "NCM_NODE": "Node 程序",
+    "NCM_CLI_JS": "官方 CLI 的 JS 入口"
+  }
 }

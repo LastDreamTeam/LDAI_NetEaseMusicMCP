@@ -124,5 +124,21 @@ def music_album(album_id: Id):
     """Read metadata for a catalog album."""
     return command(["album","get","--albumId",album_id], "读取专辑")
 
+
+@mcp.tool()
+def music_podcast(podcast_id:Annotated[str,Field(pattern=r"^\d{1,24}$")],episodes:bool=False,limit:Page=20,offset:Offset=0):
+    """Read a podcast/radio channel or a page of its episodes."""
+    if episodes:
+        return command(["podcast","voices","--id",podcast_id,"--limit",str(limit),"--offset",str(offset),
+                        "--filterCtrl","true","--needPlayRecord","true","--asc","false"],"读取电台节目")
+    return command(["podcast","get","--ids",json.dumps([podcast_id])],"读取电台详情")
+
+@mcp.tool()
+def music_collected_podcasts(limit:Page=20,cursor:str=""):
+    """Read radio channels subscribed to by the selected user."""
+    args=["podcast","collected","--limit",str(limit)]
+    if cursor:args+=["--cursor",cursor]
+    return command(args,"读取收藏电台")
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")
