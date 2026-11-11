@@ -1,0 +1,11 @@
+{
+  "connector": "netease-music",
+  "accounts": {
+    "work": {
+      "accountHome": "/private/work"
+    },
+    "personal": {
+      "accountHome": "/private/personal"
+    }
+  }
+}
