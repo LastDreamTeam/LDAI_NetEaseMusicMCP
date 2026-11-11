@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "netease-music": {
+      "command": "python",
+      "args": [
+        "${PLUGIN_ROOT}/launch.py"
+      ]
+    }
+  }
+}
