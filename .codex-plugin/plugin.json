@@ -1,6 +1,6 @@
 {
   "name": "netease-music",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "使用网易云音乐官方 CLI 搜索音乐、读取个人音乐库和管理歌单。",
   "author": {
     "name": "LastDreamTeam"
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/LastDreamTeam/LDAI_NetEaseMusicMCP",
   "license": "AGPL-3.0-only",
   "interface": {
-    "displayName": "网易云音乐",
+    "displayName": "NetEase Cloud Music",
     "shortDescription": "搜索音乐和维护个人歌单",
     "longDescription": "使用网易云音乐官方 CLI 搜索音乐、读取个人音乐库和管理歌单。",
     "developerName": "LastDreamTeam",

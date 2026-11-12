@@ -1,4 +1,4 @@
-# 网易云音乐 MCP
+# NetEase Cloud Music MCP
 
 > **自用项目** · 本仓库主要供维护者自用。
 
