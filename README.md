@@ -2,7 +2,17 @@
 
 > **自用项目** · 本仓库主要供维护者自用。
 
-使用网易云音乐官方 CLI 查询曲库、音乐库并管理歌单。 本仓库是独立维护的第三方 stdio MCP 连接器。
+[English quick start](#english-quick-start)
+
+在聊天里按歌名找歌、查自己的歌单，或按选中的歌曲 ID 整理收藏。这个第三方连接器调用网易云音乐官方 CLI，使用运行 MCP 的本地账户所登录的音乐账号。
+
+## 先找对歌，再整理歌单
+
+登录并接入客户端后，试着问：
+
+> 搜索《茉莉花》，只列出前五首歌的歌名、歌手和歌曲 ID，先让我选版本。
+
+`music_status` 用来确认登录，`music_search` 支持按歌曲、专辑、歌单等分类查找。按返回的歌曲 ID 可以分清同名作品；需要收藏时再指定你选中的版本。若一台电脑上同时使用工作账号和个人账号，先看下文的多账号配置，将两个 CLI 登录分别放到各自的目录。
 
 ## 安装运行环境
 
@@ -32,19 +42,6 @@ python client_config.py codex
 
 可重复使用 `--env NAME=VALUE` 传递这些设置：`NCM_CLI_JS`、`NCM_NODE`。涉及密钥的设置只填写私有文件的路径。在客户端刷新工具后先调用 `music_status`。各端使用同一个服务入口，克隆到另一台机器时重新生成路径。仓库另附 Codex 插件清单、图标和技能，可用于打包本地插件。若插件被复制到客户端缓存，可通过进程环境 `LDAI_MCP_PYTHON` 指定已安装依赖的 Python 绝对路径。 [Cursor MCP 文档](https://cursor.com/docs/mcp) · [DSH MCP 客户端](https://github.com/deepseek-ai/deepseek-harness/blob/main/packages/mcp/mcp-client/README.zh.md)
 
-## 实现参考
-
-GitHub 数据核对日期为 2026-11-11。
-
-参照网易官方 CLI 的认证和命令，同时借鉴社区 MCP 的搜索、歌单与推荐工具划分。
-
-- [NetEase/skills](https://github.com/NetEase/skills) · 266 stars，默认分支 7 次提交
-- [Vael-KY/netease-music-mcp](https://github.com/Vael-KY/netease-music-mcp) · 221 stars，默认分支 68 次提交
-
-## 许可
-
-本项目以 **GNU Affero General Public License v3.0 only（AGPL-3.0-only）** 发布。分发受许可覆盖的修改版或通过网络向用户提供修改版时，应按许可条款向相应用户提供对应源码。仅在本机自行使用无需公开发布。第三方服务及依赖遵循各自条款。[许可全文](LICENSE)
-
 ## 账号管理窗口
 
 账号版从本插件详情页点「管理」→「已连接的账户」→「连接另一个账户」。已连接账号右侧菜单提供重命名、重新连接和断开连接。
@@ -63,8 +60,23 @@ MCP 入口为 `router.py`，需要 Python 3.11+。主机在本地保存账号配
 
 维护者在 main 提交改进、运行测试，并同步更新 connector.json、两个插件清单的版本，再执行 `python build_plugin.py --push`。此命令将 main 与版本标签一起推送到本仓库，再从已提交文件生成 ZIP。更新既有账号插件时传 `--account-name <既有包名>`，把生成的 ZIP 发布到同一插件。包内 release-source.json 记录精确提交，可与各终端核对。Git 推送与账号插件发布是两个独立步骤。
 
-许可为 **AGPL-3.0-only**。[许可全文](LICENSE)
-
 [原生插件页多账号接入候选版：部署、覆盖范围与验收](native_account/README.md)
 
 使用 Codex 插件页连接、重连和管理多个工作站账号，见[工作站接入](native_account/WORKSTATION.md)。
+
+## English quick start
+
+Search the catalog or work with your own playlists through the official NetEase Cloud Music CLI. Install Python 3.11+ and the Python requirements, set up `@music163/ncm-cli`, and verify the intended profile with `ncm-cli login --check`. Run `python client_config.py cursor` to print the host entry. After loading it, use `music_status`, then `music_search` with a keyword and `kind` set to `song`. Use the returned song ID when choosing among recordings.
+
+## 实现参考
+
+GitHub 数据核对日期为 2026-11-11。
+
+参照网易官方 CLI 的认证和命令，同时借鉴社区 MCP 的搜索、歌单与推荐工具划分。
+
+- [NetEase/skills](https://github.com/NetEase/skills) · 266 stars，默认分支 7 次提交
+- [Vael-KY/netease-music-mcp](https://github.com/Vael-KY/netease-music-mcp) · 221 stars，默认分支 68 次提交
+
+## 许可
+
+本项目以 **GNU Affero General Public License v3.0 only（AGPL-3.0-only）** 发布。分发受许可覆盖的修改版或通过网络向用户提供修改版时，应按许可条款向相应用户提供对应源码。仅在本机自行使用无需公开发布。第三方服务及依赖遵循各自条款。[许可全文](LICENSE)
